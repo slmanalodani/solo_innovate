@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}Experiments{% endblock %}
+
+{% block body %}
+<h1 class="page-title">Your Experiments</h1>
+
+<div class="top-actions">
+    <a href="/experiments/new" class="cta-button">+ New Experiment</a>
+</div>
+
+{% if experiments %}
+    <div class="experiment-grid">
+        {% for exp in experiments %}
+            <a href="/experiments/{{ exp[0] }}" class="experiment-card">
+                <h2>{{ exp[1] }}</h2>
+                <p class="metric-label">Metric: <strong>{{ exp[2] }}</strong></p>
+            </a>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="empty-state">No experiments yet. Create your first one!</p>
+{% endif %}
+
+{% endblock %}

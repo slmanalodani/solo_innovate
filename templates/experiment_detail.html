@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block title %}Experiment Details{% endblock %}
+
+{% block body %}
+
+<h1 class="page-title">{{ experiment[1] }}</h1>
+
+<!-- Delete Button -->
+<form action="/experiments/{{ experiment[0] }}/delete" method="POST"
+      onsubmit="return confirm('Delete this experiment? This cannot be undone.')">
+    <button class="delete-button">Delete Experiment</button>
+</form>
+
+<div class="experiment-info" style="margin-top: 25px;">
+    <p><strong>Option A:</strong> {{ experiment[2] }}</p>
+    <p><strong>Option B:</strong> {{ experiment[3] }}</p>
+    <p><strong>Metric:</strong> {{ experiment[4] }}</p>
+    <p><strong>Duration:</strong> {{ experiment[5] }} days</p>
+</div>
+
+<hr style="margin: 40px 0;">
+
+<!-- Averages Section -->
+<h2>Results Summary (Last {{ experiment[5] }} Days)</h2>
+
+<div style="margin-top: 20px; padding: 20px; background: #fafafa; border-radius: 10px; border: 1px solid #e5e5e5;">
+    <p><strong>Average {{ experiment[2] }}:</strong>
+        {% if avg_a is not none %}
+            {{ "%.2f"|format(avg_a) }}
+        {% else %}
+            No data yet
+        {% endif %}
+    </p>
+
+    <p><strong>Average {{ experiment[3] }}:</strong>
+        {% if avg_b is not none %}
+            {{ "%.2f"|format(avg_b) }}
+        {% else %}
+            No data yet
+        {% endif %}
+    </p>
+
+    <p><strong>Better Option:</strong>
+        {% if winner %}
+            {{ winner }}
+        {% else %}
+            Not enough data yet
+        {% endif %}
+    </p>
+</div>
+
+<hr style="margin: 40px 0;">
+
+<h2>Daily Logs</h2>
+
+<a href="/experiments/{{ experiment[0] }}/log" class="cta-button" style="margin-bottom: 20px; display: inline-block;">
+    + Add Daily Result
+</a>
+
+<div class="logs-list" style="margin-top: 20px;">
+    {% if logs %}
+        {% for log in logs %}
+            <div class="log-card" style="
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                border: 1px solid #e5e5e5;
+                margin-bottom: 15px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            ">
+                <p><strong>Date:</strong> {{ log[2] }}</p>
+                <p><strong>Option Used:</strong> {{ log[3] }}</p>
+                <p><strong>Score:</strong> {{ log[4] }}</p>
+
+                {% if log[5] %}
+                    <p><strong>Notes:</strong> {{ log[5] }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="empty-state">No logs yet. Add your first daily result.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

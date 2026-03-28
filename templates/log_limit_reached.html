@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}Limit Reached{% endblock %}
+
+{% block body %}
+<h1>Logging Limit Reached</h1>
+
+<p>You set this experiment to last {{ duration }} days.</p>
+<p>You have already logged {{ duration }} times.</p>
+
+<a href="/experiments/{{ experiment[0] }}" class="cta-button">Back to Experiment</a>
+{% endblock %}

@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>HabitLab: {% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="/static/style.css">
-    </head>
-    <body>
-        {% block body %} {% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Habit-Lab: {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="page-container">
+
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="/" class="logo">Habit-Lab</a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/experiments">Experiments</a></li>
+                <li><a href="/history">History</a></li>
+                <li><a href="/about">About Habit-Lab</a></li>
+            </ul>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <main class="content">
+            {% block body %}{% endblock %}
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>© Habit-Lab</p>
+        </footer>
+
+    </div>
+
+</body>
 </html>

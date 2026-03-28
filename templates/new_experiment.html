@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}New Experiment{% endblock %}
+
+{% block body %}
+
+<h1 class="page-title">Create a New Experiment</h1>
+
+<div class="form-card">
+    <form action="/experiments/new" method="POST">
+
+        <label>What question are you testing?</label>
+        <input type="text" name="question" placeholder="e.g., Which morning routine gives me more energy?" required>
+
+        <label>Option A</label>
+        <input type="text" name="option_a" placeholder="e.g., Cold shower" required>
+
+        <label>Option B</label>
+        <input type="text" name="option_b" placeholder="e.g., Warm shower" required>
+
+        <label>Metric (what are you measuring?)</label>
+        <input type="text" name="metric" placeholder="e.g., Energy level" required>
+
+        <label>Duration (days)</label>
+        <input type="number" name="duration_days" min="1" max="30" required>
+
+        <button type="submit" class="cta-button" style="margin-top: 20px;">Create Experiment</button>
+    </form>
+</div>
+
+{% endblock %}

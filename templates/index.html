@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block body %}
+<div class="hero">
+    <h1>Turn Your Habits Into Experiments</h1>
+    <p>Stop guessing what works. Test different strategies, track your results, and discover the best version of your habits.</p>
+    <a href="/experiments/new" class="cta-button">Create Your First Experiment</a>
+</div>
+
+<div class="steps-section">
+    <h2>How Habit-Lab Works</h2>
+
+    <div class="steps-grid">
+
+        <div class="step-card">
+            <h3>1. Define Your Question</h3>
+            <p>Start with a simple question like: “Does morning study or evening study work better for me?”</p>
+        </div>
+
+        <div class="step-card">
+            <h3>2. Add Options A & B</h3>
+            <p>Create two strategies you want to compare. Keep it simple and test one variable at a time.</p>
+        </div>
+
+        <div class="step-card">
+            <h3>3. Set Your Metric</h3>
+            <p>Choose how you’ll measure success — focus, mood, productivity, time spent, etc.</p>
+        </div>
+
+        <div class="step-card">
+            <h3>4. Log Daily Results</h3>
+            <p>Each day, record which option you used and how well it performed.</p>
+        </div>
+
+        <div class="step-card">
+            <h3>5. Compare Results</h3>
+            <p>View charts, averages, and insights to see which option performs better.</p>
+        </div>
+
+        <div class="step-card">
+            <h3>6. Build Better Habits</h3>
+            <p>Use your findings to choose the best strategy and improve your habits long‑term.</p>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

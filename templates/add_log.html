@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}Add Daily Result{% endblock %}
+
+{% block body %}
+<h1>Add Daily Result</h1>
+
+<form action="/experiments/{{ experiment[0] }}/log" method="POST" class="form-container">
+
+    <label>Which option did you use?</label>
+    <select name="option_used" required>
+        <option value="{{ experiment[2] }}">{{ experiment[2] }}</option>
+        <option value="{{ experiment[3] }}">{{ experiment[3] }}</option>
+    </select>
+
+    <label>Score (1–10)</label>
+    <input type="number" name="score" min="1" max="10" required>
+
+    <label>Notes (optional)</label>
+    <textarea name="notes"></textarea>
+
+    <button type="submit" class="cta-button">Save Result</button>
+</form>
+
+{% endblock %}
