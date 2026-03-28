@@ -34,10 +34,12 @@ class Database:
 
         self.conn.commit()
 
+    # method to run select query and return result
     def query(self, sql, params=()):
         self.cursor.execute(sql, params)
         return self.cursor.fetchall()
-
+    
+    # method to SQL commands that change the database, such as:
     def execute(self, sql, params=()):
         self.cursor.execute(sql, params)
         self.conn.commit()
