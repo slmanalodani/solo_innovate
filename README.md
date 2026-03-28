@@ -16,22 +16,6 @@ Organized code structure using models, routes, and a database wrapper
 
 SQLite backend with automatic table creation
 
-Project Structure:
-app.py
-database.py
-models/experiment.py
-models/log.py
-routes/experiments.py
-routes/history.py
-routes/about.py
-templates/index.html
-templates/experiments.html
-templates/new_experiment.html
-templates/experiment_detail.html
-templates/add_log.html
-templates/log_limit_reached.html
-templates/history.html
-templates/about.html
 
 Installation:
 
