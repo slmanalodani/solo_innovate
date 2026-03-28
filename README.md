@@ -1,83 +1,51 @@
-Habit‑Lab is a simple experiment‑based habit tracker built with Flask.
-You create A/B experiments, log daily results, and Habit‑Lab shows which option performs better.
+Habit‑Lab is a simple experiment‑based habit tracker built with Flask. It lets you create A/B experiments, log daily results, and see which option performs better over time. The goal is to help you make better decisions about your habits using real data instead of guesswork.
 
-Features
+Features:
+
 Create custom experiments
 
 Compare two options (A/B testing)
 
 Log daily scores with optional notes
 
-Automatic duration limits
+Automatic duration limits based on the experiment length
 
-View experiment history
+View full experiment history
 
-Clean OOP architecture (models, routes, database wrapper)
+Organized code structure using models, routes, and a database wrapper
 
 SQLite backend with automatic table creation
 
-Project Structure
-Code
+Project Structure:
 app.py
 database.py
+models/experiment.py
+models/log.py
+routes/experiments.py
+routes/history.py
+routes/about.py
+templates/index.html
+templates/experiments.html
+templates/new_experiment.html
+templates/experiment_detail.html
+templates/add_log.html
+templates/log_limit_reached.html
+templates/history.html
+templates/about.html
 
-models/
-  experiment.py
-  log.py
+Installation:
 
-routes/
-  experiments.py
-  history.py
-  about.py
+Clone the repository: git clone https://github.com/slmanalodani/habit-lab.git
 
-templates/
-  index.html
-  experiments.html
-  new_experiment.html
-  experiment_detail.html
-  add_log.html
-  log_limit_reached.html
-  history.html
-  about.html
-Installation
-Clone the repository:
+Enter the folder: cd habit-lab
 
-Code
-git clone https://github.com/slmanalodani/habit-lab.git
-cd habit-lab
-Create a virtual environment:
+Create a virtual environment
 
-Code
-python3 -m venv venv
-source venv/bin/activate   # macOS/Linux
-venv\Scripts\activate      # Windows
-Install dependencies:
+Install dependencies with pip install -r requirements.txt
 
-Code
-pip install -r requirements.txt
-Run the app:
+Run the app using python app.py
 
-Code
-python app.py
-Open in your browser:
+Open http://127.0.0.1:5000 in your browser
 
-Code
-http://127.0.0.1:5000
-Database
-Habit‑Lab uses SQLite (habitlab.db).
-The database and tables are created automatically on startup.
-
-To reset the app:
-
-Code
-rm habitlab.db
-Code
-http://127.0.0.1:5000
-Database
-Habit‑Lab uses SQLite (habitlab.db).
-The database and tables are created automatically on startup.
-
-To reset the app:
-
-Code
-rm habitlab.db
+Database:
+Habit‑Lab uses a SQLite database named habitlab.db. The database and tables are created automatically when the app starts. To reset the app, delete the habitlab.db file.
