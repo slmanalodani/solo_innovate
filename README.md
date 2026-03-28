@@ -35,7 +35,7 @@ templates/about.html
 
 Installation:
 
-Clone the repository: git clone https://github.com/slmanalodani/habit-lab.git
+Clone the repository: git clone https://github.com/slmanalodani/solo_innovate.git
 
 Enter the folder: cd habit-lab
 
