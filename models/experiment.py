@@ -1,5 +1,5 @@
 # models/experiment.py
-from datetime import datetime, timedelta
+from datetime import datetime
 
 class Experiment:
     def __init__(self, db):
