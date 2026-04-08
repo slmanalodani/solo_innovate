@@ -39,7 +39,7 @@ class Database:
         self.cursor.execute(sql, params)
         return self.cursor.fetchall()
     
-    # method to SQL commands that change the database, such as:
+    # method to SQL commands that change the database
     def execute(self, sql, params=()):
         self.cursor.execute(sql, params)
         self.conn.commit()
