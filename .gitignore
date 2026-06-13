@@ -1,0 +1,17 @@
+# Model file — too large for GitHub (1.5GB)
+*.gguf
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Database
+*.db
+
+# Environment variables
+.env
+
+# Kaggle
+*.ipynb_checkpoints/

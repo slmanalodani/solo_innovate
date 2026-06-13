@@ -1,0 +1,11 @@
+FROM ./habitlab_model.gguf
+
+SYSTEM "You are HabitLab AI, a habit experiment assistant. When designing experiments, Strategy A and Strategy B must be clearly different approaches — different methods, different times of day, or different techniques. Never repeat the same idea in both strategies."
+
+PARAMETER temperature 0.3
+PARAMETER repeat_penalty 1.3
+PARAMETER num_predict 300
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|endoftext|>"
+PARAMETER stop "\nhabit:"
+PARAMETER stop "\nexperiment:"

@@ -6,26 +6,112 @@
 
 <h1 class="page-title">Create a New Experiment</h1>
 
+<!-- 
+    AI EXPERIMENT DESIGNER SECTION
+    This part lets the user enter a habit + goal,
+    then the AI generates Strategy A, Strategy B, Metric, and Duration.
+-->
+<div class="form-card" style="margin-bottom: 25px;">
+    <h2>AI Experiment Designer</h2>
+
+    <!-- User inputs for the AI -->
+    <label>Habit</label>
+    <input type="text" id="habitInput" placeholder="e.g., sleep, study">
+
+    <label>Goal</label>
+    <input type="text" id="goalInput" placeholder="e.g., wake up earlier">
+
+    <!-- Button that triggers the AI request -->
+    <button type="button" class="cta-button" onclick="generateExperiment()" style="margin-top: 15px;">
+        Generate with AI
+    </button>
+
+    <!-- Box where the AI output will be shown -->
+    <div id="aiOutput" style="margin-top: 15px; white-space: pre-wrap; font-size: 0.9rem; color: #333;"></div>
+</div>
+
+
+<!-- 
+    ORIGINAL EXPERIMENT CREATION FORM
+    The AI will auto-fill these fields when it generates suggestions.
+-->
 <div class="form-card">
     <form action="/experiments/new" method="POST">
 
         <label>What question are you testing?</label>
-        <input type="text" name="question" placeholder="e.g., Which morning routine gives me more energy?" required>
+        <input type="text" id="questionField" name="question" placeholder="e.g., Which morning routine gives me more energy?" required>
 
         <label>Option A</label>
-        <input type="text" name="option_a" placeholder="e.g., Cold shower" required>
+        <input type="text" id="optionAField" name="option_a" placeholder="e.g., Cold shower" required>
 
         <label>Option B</label>
-        <input type="text" name="option_b" placeholder="e.g., Warm shower" required>
+        <input type="text" id="optionBField" name="option_b" placeholder="e.g., Warm shower" required>
 
         <label>Metric (what are you measuring?)</label>
-        <input type="text" name="metric" placeholder="e.g., Energy level" required>
+        <input type="text" id="metricField" name="metric" placeholder="e.g., Energy level" required>
 
         <label>Duration (days)</label>
-        <input type="number" name="duration_days" min="1" max="30" required>
+        <input type="number" id="durationField" name="duration_days" min="1" max="30" required>
 
         <button type="submit" class="cta-button" style="margin-top: 20px;">Create Experiment</button>
     </form>
 </div>
+
+
+<!-- 
+    JAVASCRIPT SECTION
+    This sends the habit + goal to the Flask backend (/ai/designer)
+    and then fills the form with the AI-generated strategies.
+-->
+<script>
+function generateExperiment() {
+
+    const habit = document.getElementById("habitInput").value;
+    const goal = document.getElementById("goalInput").value;
+
+    document.getElementById("aiOutput").innerText = "Generating experiment...";
+
+    fetch("/ai/designer", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ habit: habit, goal: goal })
+    })
+    .then(response => response.json())
+    .then(data => {
+
+        // If backend returned an error, show it and stop
+        if (data.error) {
+            document.getElementById("aiOutput").innerText = data.error;
+            return;
+        }
+
+        // Fill form fields directly from structured response
+        document.getElementById("aiOutput").innerText = data.experiment;
+        document.getElementById("optionAField").value = data.strategy_a || "";
+        document.getElementById("optionBField").value = data.strategy_b || "";
+        document.getElementById("metricField").value = data.metric || "";
+        document.getElementById("durationField").value = data.duration || "";
+
+        // Build a clean question based on available info
+        let questionText = "";
+
+        if (habit && goal) {
+            questionText = `Which strategy helps me improve my habit of ${habit} so I can achieve my goal of ${goal}?`;
+        } else if (habit) {
+            questionText = `Which strategy helps me improve my ${habit}?`;
+        } else if (goal) {
+            questionText = `Which strategy helps me reach my goal of ${goal}?`;
+        }
+
+        // Fill the question field
+        document.getElementById("questionField").value = questionText;
+    })
+    .catch(error => {
+        document.getElementById("aiOutput").innerText = "Error: " + error;
+    });
+}
+</script>
 
 {% endblock %}
